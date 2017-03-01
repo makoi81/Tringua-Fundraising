@@ -1,0 +1,18 @@
+ // source for Phone: https://www.wufoo.com/html5/types/2-tel.html
+// source for change password
+//http://www.motobit.com/help/usrmgr/sa28.htm
+
+<form Name=Password>
+ Old password : <input Name=OldPassword>
+ New password : <input Name=NewPassword>
+ <input type=button onclick="ChangePassword()" Value="Change Password">
+</form>
+
+<script language=vbscript>
+ Function ChangePassword()
+  Set Server = CreateObject("UserManager.Server")
+  Server.Select ""
+  Server.ChangePassword document.forms.Password.OldPassword.Value, document.forms.Password.NewPassword.Value
+  MsgBox "Password was changed to " & document.forms.Password.NewPassword.Value
+ End Function
+</script>
