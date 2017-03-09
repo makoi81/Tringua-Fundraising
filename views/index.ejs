@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <title>Tringua Fundraising</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+      <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+    <!-- Basic modal library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/basicModal/3.3.8/basicModal.min.css" />
+
+  </head>   <!-- 16467658666 14696450110 -->
+  <body>
+    <div class="header">
+      <h1>Tringua Fundraising</h1>
+      <!-- <div>Welcome,<%#  loggedInUser %> !</div> -->
+    </div>
+    <div class="goals">
+      <h2>Main Goals</h1>
+       <ol> 
+         <li><h3>Funerals</h3></li>
+         <li><h3>Immigration Lawyer</h3></li>
+       </ol>
+    </div>   
+    <div class="row">
+      <div class="col-3 menu">
+          <h2>Statement</h2>
+          <h3>Last Five  Transactions</h3>
+          <ol>
+            <li>01/02/2016   flight ticket : $1300</li>
+            <li>01/05/2017   flight ticket : $1300</li>
+            <li>01/02/2017   flight ticket : $1300</li>
+            <li>01/02/2017   flight ticket : $1300</li>
+            <li>01/02/2017   flight ticket : $1300</li>
+          </ol>
+      </div>  
+    </div>
+    <div class="row">
+      <div class="col-3 menu">
+          <h3> Previous SMS MMS Voice and Video</h3>
+          <ol>
+            <li>01/02/2016   hi How are you</li>
+            <li>01/05/2017   hi How are you</li>
+            <li>01/02/2017   hi How are you</li>
+            <li>01/02/2017   hi How are you</li>
+            <li>01/02/2017   hi How are you</li>
+          </ol>
+      </div>       
+    </div>   
+    <div class="col-3 right">
+      <div class="aside"> 
+        <div class="smsBox">
+
+          <% for(var i = 0; i < listMessages.length; i++){ %>
+             <h2>message <%=i+1 %></h2>
+             <h3><%= listMessages[i].dateTime %></h3>
+             <h3><%= listMessages[i].message %></h3>
+             <!-- <h3><%#listMessages[i].receiver %></h3> -->
+             <!-- <h3>FROM:<%# listMessages[i].sender %></h3> -->
+          <%}%>
+
+          <form  action= "/sms" method="POST" >
+            <div class="message">           
+              <textarea type="textarea"  rows="4" name="message" ></textarea>
+            </div>         
+            <div class="submit" >
+              <!-- <button type="Submit" value"Submit">Send</button> -->
+              <input type="submit" value="Send">
+            </div>
+          </form>
+        </div>
+        <div class="phone">
+           <p>             
+             <span>Phone:<input type=tel size=3>-<input type=tel size=3>-
+               <input type=tel size=4></span>
+           </p>    
+        </div>
+        <div class="changePwd">
+          <!-- <h1>change Pwd</h1> -->
+          <a href="changePassWord.html">change Pwd</a>
+        </div>
+        <div class="unsubscribe">
+         <!--  <h1>Unsubscribe</h1> -->
+          <button id="unsub">unsubscribe</button>
+        </div>
+      </div>  
+    </div> 
+         <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+    <!-- basicModal lybrary -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/basicModal/3.3.8/basicModal.min.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>

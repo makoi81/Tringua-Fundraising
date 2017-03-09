@@ -1,0 +1,19 @@
+
+function modal(){}
+    basicModal.show({
+        body: '<p>This type of modal can be used to ask the user questions. Are you sure you want to continue?</p>',
+        closable: true,
+        buttons: {
+            cancel: {
+                title: 'Cancel',
+                fn: basicModal.close
+            },
+            action: {
+                title: 'Continue',
+                fn: basicModal.close
+            }
+        }
+    });
+}
+
+document.querySelector('button').onclick = modal;

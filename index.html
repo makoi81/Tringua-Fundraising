@@ -3,13 +3,16 @@
 <title>Tringua foundraising</title>
 <head>
     <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
   <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <!-- Basic modal library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/basicModal/3.3.8/basicModal.min.css" />
+  
 </head>
 <body>
   <div class="container">
@@ -24,30 +27,27 @@
           <li>01/02/2017   flight ticket : $1300</li>
         </ol>
       </div>
-        <div>
-              <h1> Previous SMS MMS Voice and Video</h1>
-              <ol>
-                <li>01/02/2016   hi How are you</li>
-                <li>01/05/2017   hi How are you</li>
-                <li>01/02/2017   hi How are you</li>
-                <li>01/02/2017   hi How are you</li>
-                <li>01/02/2017   hi How are you</li>
-          </ol>
-        </div>
-        <div class="smsBox">
-            <br style="clear:both">
-            <div class="form-group col-md-4 ">
-              <label id="messageLabel" for="message">Message </label>
-              <textarea class="form-control input-sm " type="textarea" id="message" placeholder="Message" maxlength="30" rows="4"></textarea>
-            </div>
-            <br style="clear:both">
-            <div class="form-group col-md-2">
-              <button class="form-control input-sm btn btn-success disabled" id="btnSubmit" name="btnSubmit" type="button" style="height:35px"> Send</button>
+      <div>
+            <h1> Previous SMS MMS Voice and Video</h1>
+            <ol>
+              <li>01/02/2016   hi How are you</li>
+              <li>01/05/2017   hi How are you</li>
+              <li>01/02/2017   hi How are you</li>
+              <li>01/02/2017   hi How are you</li>
+              <li>01/02/2017   hi How are you</li>
+            </ol>
+      </div>
+      <div class="smsBox">          
+            <div class="message">
+             <!--  <label id="messageLabel" for="message">Message </label> -->
+              <textarea  type="textarea" id="message"  maxlength="300" rows="40"></textarea>
+            </div>      
+            <div >
+              <button   name="btnSend" type="button" >Send</button>
             </div>
       </div>
       <div class="phone">
-         <p>
-           <span class="glyphicon glyphicon-phone-alt">:</span>
+         <p>      
            <span><input type=tel size=3>-<input type=tel size=3>-
              <input type=tel size=4></span>
          </p>
@@ -58,6 +58,10 @@
       </div>
       <div>
         <h1>Unsubscribe</h1>
+        
+        <ahref="unsubscribe.ejs"
+           onClick="alert('Hello out there!')";><button>unsubscribe</button></a>
+
       </div>
 </div>
 </body>
