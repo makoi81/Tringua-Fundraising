@@ -5,8 +5,12 @@
 
 body{
     margin: 10px;
-    border: solid 5px black;
-    background-color: beige;
+   /* border: solid 5px black;*/
+    /*background-color: beige;*/
+    background-size: 80px 60px;
+   /* background-image:  url("./images/bkgFoto4.jpg");
+    background-repeat: repeat;
+    color: red;*/ 
 
 }
 .row::after {
@@ -87,13 +91,13 @@ html {
 .changePwd{
     margin: 20px;
 }
-.footer {
+/*.footer {
     background-color: #0099cc;
     color: #ffffff;
     text-align: center;
     font-size: 12px;
     padding: 15px;
-}
+}*/
 /* For desktop: */
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}

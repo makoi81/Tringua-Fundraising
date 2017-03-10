@@ -33,8 +33,25 @@ app.set('view engine', 'ejs')
 app.get('/', function(req, res){
 	console.log("hi this list rendering ");
 	
-	res.render('index', {listMessages: listSms});
+	 res.render('login', {listMessages: listSms});
+	//redirect("/");
 });
+
+app.post('/login', function(req, res){  
+ res.render('index', {listMessages: listSms});
+});
+
+
+
+// set the route for the home page
+app.get('/sms', function(req, res){
+	console.log("hi this list rendering ");
+	
+	// res.render('index', {listMessages: listSms});
+	redirect("/");
+
+});
+
 
 
 // create   route for  sms

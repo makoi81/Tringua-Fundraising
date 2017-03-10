@@ -1,0 +1,91 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+  font-size: 8pt;
+  background-image: url("./images/bkgFoto2.jpg");
+  background-size: 80px 60px;
+  background-repeat: repeat; 
+}
+.goals{
+  /*display: table;*/
+  /*margin: 1em auto 0;
+  padding: 1.25em 0.75em;
+  border: 2px double;*/
+  width:70%;
+  /*margin: auto;*/
+  margin: 1em auto 0;
+  /*height: 300px;*/ 
+ /* font-size: 5pt;*/
+  font-size: 0.9em;
+
+  
+
+  background-color: beige;
+  padding: 1.5em 0.75em;
+}
+h1{
+   /*font-size: 7pt;*/
+   
+  text-align: center;
+  font-family: 'Tangerine', serif;
+  font-size: 48px;
+  margin-top: -10px;
+  border: 5px solid black;
+  border-radius: 10px;  
+}
+h2{ 
+    font-size: 1em;
+    text-align: center;
+   /* margin-left:50px;*/
+}
+.login-form {
+  font-size: 0.5em;
+  display: table;
+  margin: 1em auto 0;
+  padding: 1.25em 0.75em;
+  border: 2px double;
+  background-color: beige;
+}
+.login-form label {
+  display: block;
+  margin-bottom: 0.25em;
+}
+.login-form span {
+  display: inline-block;
+  min-width: 6em;
+}
+.login-form .actions {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.sign_up{
+  margin-top: 1em;
+  text-align: center;
+}
+
+
+/* For desktop: */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
