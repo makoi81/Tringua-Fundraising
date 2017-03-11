@@ -5,14 +5,18 @@
 
 body{
     margin: 10px;
-   /* border: solid 5px black;*/
-    /*background-color: beige;*/
+    /*border: solid 5px black;*/
+    background-color: beige;
     background-size: 80px 60px;
    /* background-image:  url("./images/bkgFoto4.jpg");
     background-repeat: repeat;
     color: red;*/ 
 
 }
+/*.container{
+    background-image: url("./images/bkgFoto2.jpg");
+    background-repeat: repeat;
+}*/
 .row::after {
     content: "";
     margin: 20px 10px;
@@ -25,26 +29,41 @@ body{
 }
 h1{
     text-align: center;
+    text-align: center;
+  /*font-family: 'Tangerine', serif;
+  font-size: 48px;
+  margin-top: -10px;
+  border: 5px solid black;
+  border-radius: 10px;
+  background-color: #CCBE85;*/ 
 
 }
 h2{
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 h3{
     /*text-align: center;*/
+    margin:0;
     margin-left:50px;
+    /*margin: 0;*/
+    padding: 0;
 
 }
 [class*="col-"] {
     float: left;
-    padding: 15px 0px;
+    padding:0;
+    margin:0 auto ;
 }
 html {
     font-family: "Lucida Sans", sans-serif;
 }
 .header {
-    background-color: #9933cc;
-    color: #ffffff;
+   /* background-color: #9933cc;*/
+   background-color: #CCBE85;
+    /*color: #ffffff;*/
+    color:black;
    /* padding: 15px;*/
     margin: auto;
     font-size: 1.75em;
@@ -53,7 +72,7 @@ html {
 .menu ol {
     list-style-type: none;
     /*margin: 20px 20px;*/
-    margin: auto;
+    margin: 0 auto;
     padding: 20px;
     width: 80%;
 }
@@ -61,10 +80,13 @@ html {
 
 
 .menu li {
+    text-align: left;
     padding: 10px 10px;
     margin-bottom: 7px;
-    background-color: #33b5e5;
-    color: #ffffff;
+   /* background-color: #33b5e5;*/
+   background-color:#CCBE80;
+   /* color: #ffffff;*/
+   color:black;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
@@ -73,16 +95,17 @@ html {
 }
 
 .aside {
-    background-color: #33b5e5;
+    /*background-color: #33b5e5;*/
+    background-color:#CCBE80;
     padding:1em;
    /* margin: 10px -10px;*/
-    margin:1em;
+    margin:1em 0;
 
     /*width: 800%
     color: #ffffff;*/
     text-align: center;
-    font-size: 14px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    font-size: 10px;
+    /*box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
 }
 /*.message{
     width: 80em;
@@ -117,4 +140,15 @@ html {
     [class*="col-"] {
         width: 100%;
     }
+}
+
+
+.stripeform{
+    background-color: #33b5e5;
+    padding:1em;
+    margin:1em;
+    text-align: center;
+    font-size: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
 }
