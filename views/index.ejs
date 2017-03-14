@@ -14,6 +14,9 @@
 
     <!-- Basic modal library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/basicModal/3.3.8/basicModal.min.css" />
+        <!-- Tinymce library -->
+    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
 
   </head>   <!-- 16467658666 14696450110 -->
   <body>
@@ -21,9 +24,51 @@
       <div class="header">
         <h1>Tringua Fundraising</h1>
         <!-- <div>Welcome,<%#  loggedInUser %> !</div> -->
-      </div>     
+      </div> 
+      <!-- //-->
+    <!-- <div class="mainGoals">  --> 
+      <div class="goals">
+        <h2>Main Goals</h2>
+          <ol> 
+          <li><h3>Funerals</h3></li>
+            <p>
+              The main purpose of this fundraising is to finance all the expensive of the funeral of each member  from United united to the Country Mali. 
+            </p>
+          <li><h3>Immigration Lawyer</h3></li>
+            <p>
+              Immigration Lawyer
+              secondly it is to provide a lawyer for someone who get arrested by the United State Immigration service.
+            </p>
+          </ol>
+      </div>      
+      <div class="stripe_login">
+        <form action="/stripe_login"  method="post" >
+          
+            <div align="center">Create a new plan</div>
+              ID:
+              <input type="text" placeholder="Enter Email" name="ID" required>
+              name:
+              <input type="text" placeholder="name" name="name" required>
+              Amount:
+              <input type="amount" placeholder="$10" name="amount" required>
+              <div><input type="checkbox" checked="checked"> Remember me</div>
+              Interval:
+              <select name="monthlist" form="monthform">
+                <option value="monthly">month</option>
+                <option value="every 2 month">2 month</option>
+                <option value="every 3 month">3 month</option>
+              </select>              
+              <div align="center">                
+                <span><button type="submit" >Create plan</button></span>
+              </div>          
+        </form>
+      </div>
+      
+    <!-- </div>   -->
+
+      <!-- //  -->   
       <div class="row">
-        <div class="col-3 menu" align="center">
+        <div   class="col-3 menu"align="center">
             <h2>Statement</h2>
             <h3>Last Five  Transactions</h3>
             <ol>
@@ -70,21 +115,30 @@
             </form>
           </div>
           <div class="phone">                        
-            <span>Phone:<input type=tel size=3 value="1646">-<input type=tel size=3 value="765">-
-            <input type=tel size=4 value="8666"></span>
-            <span><button type="button" onclick="alert('change Phone Number')">Update</button></span>               
+            <!-- <span>Phone:<input type=tel size=3 value="1646">-<input type=tel size=3 value="765">-
+            <input type=tel size=4 value="8666"> -->
+            <!-- </span>
+            <span> -->
+
+            <span>Phone:<input type=tel size=3 value="1646-765-8666">
+
+            <button type="button" onclick="alert('change Phone Number')">Update phone</button>
+            </span>               
           </div>
           <div class="changePwd">
             <!-- <h1>change Pwd</h1> -->
-            <a href="changePassWord.html">change Pwd</a>
-          </div>
+
+            <button class="button" href="changePassWord.html">change Pwd</button>
+            
+            <!-- <a href="changePassWord.html">change Pwd</a> -->
+          </div><br>
           <div class="unsubscribe">
            <!--  <h1>Unsubscribe</h1> -->
             <button id="unsub">unsubscribe</button>
           </div>
         </div>  
       </div>  
-      <div class="stripeform">
+      <!-- <div class="stripeform"> -->
         <!-- <form action="" method="POST" id="payment-form">
             <span class="payment-errors"></span>
             <div class="form-row">
@@ -110,7 +164,7 @@
             <button type="submit">Submit Payment</button>
         </form> -->
 
-      </div>
+     <!--  </div> -->
     
   </div>  
 

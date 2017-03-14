@@ -2,15 +2,15 @@ console.log('in my javcascript on the front end')
 function modal(){
 	console.log('clicking the button')
     basicModal.show({
-        body: '<p>This type of modal can be used to ask the user questions. Are you sure you want to continue?</p>',
+        body: '<p>Are you sure you want to continue?</p>',
         closable: true,
         buttons: {
             cancel: {
-                title: 'Cancel',
+                title: 'No',
                 fn: basicModal.close
             },
             action: {
-                title: 'Continue',
+                title: 'Yes',
                 fn: basicModal.close
             }
         }

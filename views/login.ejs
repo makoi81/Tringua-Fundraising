@@ -2,46 +2,36 @@
 <html>
 <head>
 <title>Login Page</title>
-<link rel="stylesheet" type="text/css" href="login.css">
-  <!-- google fonts librairy -->
+<!-- <link rel="stylesheet" type="text/css" href="login.css">
+ -->
+ <link rel="stylesheet" type="text/css" href="style.css">
+  
+ <!-- google fonts librairy -->
 <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Tangerine">
 </head>
 <body>
-<div class="container">
-  <div class="goals">
+  <div class="container">
     <h1>Welcome To Tringua Fundraising</h1>
-    <h2>Main Goals</h2>
-      <ol> 
-      <li><h3>Funerals</h3></li>
-        <p>
-          The main purpose of this fundraising is to finance all the expensive of the funeral of each member  from United united to the Country Mali. 
-        </p>
-      <li><h3>Immigration Lawyer</h3></li>
-        <p>
-          Immigration Lawyer
-          secondly it is to provide a lawyer for someone who get arrested by the United State Immigration service.
-        </p>
-      </ol>
-  </div>
+    <div class="login-form">
+      <form class="login-form" action="/login" method="get">
+        <label>
+          <span>Username:</span>
+          <input type="text" name= "username" />
+        </label>
+        <label>
+          <span>Password:</span>
+          <input type= "password" name="password" />
+        </label>
 
-  <form class="login-form" action="/login" method="post">
-    <label>
-      <span>Username:</span>
-      <input type="text" name= "username" />
-    </label>
-    <label>
-      <span>Password:</span>
-      <input type= "password" name="password" />
-    </label>
-
-    <div class="actions">
-      <input type="submit" value="Login" />
+        <div class="actions">
+          <input type="submit" value="Login" />
+        </div>
+        <div class="sign_up">
+          <a href="sign_up"><input type="submit" value="Sign up"/></a>
+        </div>
+      </form>
     </div>
-    <div class="sign_up">
-      <a href="sign_up.html"><img src="./images/signUpFoto.jpg" alt="Mountain View" style="width:50px;height:40px;"></a>
-    </div>
-  </form>
   </div>
 </body>
 </html>

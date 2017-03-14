@@ -10,6 +10,7 @@ var port = 3000;
 var bodyParser = require("body-parser");
 
 var listSms = [];
+var contactList =[];
 
 var users = [
 	{
@@ -29,17 +30,39 @@ app.use(express.static("public"));
 // set of views engine for handlebars ejs for ejs
 app.set('view engine', 'ejs')
 
-// set the route for the home page
+// set the route from login page to  the home page
 app.get('/', function(req, res){
-	console.log("hi this list rendering ");
-	
+	console.log("hi this list rendering ");	
 	 res.render('login', {listMessages: listSms});
 	//redirect("/");
 });
-
-app.post('/login', function(req, res){  
+app.get('/login', function(req, res){  
  res.render('index', {listMessages: listSms});
 });
+
+//********************************************
+
+// set the route from the home to the sign up page
+
+app.get('/sign_up', function(req, res){
+	console.log("hi this list rendering ");	
+	  res.render('sign_up');
+	// redirect("/");
+});
+app.post('/sign_up', function(req, res){  
+	var newContact = {	
+		email:req.body.email,
+		psw:req.body.psw,
+		psw_repeat:req.body.psw_repeat		
+	}
+	contactList.push(newContact);
+	console.log("hi hi guys"+newcontact);
+	res.redirect("/");
+});
+
+
+
+
 
 
 
@@ -51,8 +74,6 @@ app.get('/sms', function(req, res){
 	redirect("/");
 
 });
-
-
 
 // create   route for  sms
 app.post('/sms', function(req, res){
@@ -100,11 +121,66 @@ app.post('/sms', function(req, res){
 
 		}
 	});	
-	res.redirect('/');
+	res.redirect('/login');
 
 });
 http.createServer(app).listen(port, function () {
    console.log("Express server listening on port "+ port);
   
 });
+/*************    set up of stripe ********** */
+
+
+// var publicStripeApiKey = '...';
+// var publicStripeApiKeyTesting = '...';
+
+// Stripe.setPublishableKey(publicStripeApiKey);
+
+// app.post('/stripe', function stripeResponseHandler (status, response) {
+// 	if (response.error) {
+// 		$('#error').text(response.error.message);
+// 		$('#error').slideDown(300);
+// 		$('#stripe-form .submit-button').removeAttr("disabled");
+// 		return;
+// 	}
+	  
+// 	var form = $("#payment-form");
+// 	form.append("<input type='hidden' name='stripeToken' value='" + response.id + "'/>");
+
+// 	$.post(
+// 		form.attr('action'),form.serialize(),function(status){
+// 				if (status != 'ok') {
+// 				$('#error').text(status);
+// 				$('#error').slideDown(300);
+// 			}
+// 		  else {
+// 		    $('#error').hide();
+// 		    $('#success').slideDown(300);
+// 		  }
+// 		  $('.submit-button').removeAttr("disabled");
+// 		}
+// 	);
+// }
+
+// // http://stripe.com/docs/tutorials/forms
+// $("#payment-form").submit(function(event) {
+// 	$('#error').hide();
+// 	// disable the submit button to prevent repeated clicks
+// 	$('.submit-button').attr("disabled", "disabled");
+
+// 	var amount = $('#cc-amount').val(); // amount you want to charge in cents
+// 	Stripe.createToken({
+// 	number: $('.card-number').val(),
+// 	cvc: $('.card-cvc').val(),
+// 	exp_month: $('.card-expiry-month').val(),
+// 	exp_year: $('.card-expiry-year').val()
+// 	}, amount, stripeResponseHandler);
+
+// 	// prevent the form from submitting with the default action
+// 	return false;
+// });
+
+
+
+
 
