@@ -37,7 +37,7 @@ app.get('/', function(req, res){
 	//redirect("/");
 });
 app.get('/login', function(req, res){  
- res.render('index', {moment: moment, listMessages: listSms});
+ res.render('index', {listMessages: listSms});
 });
 
 //********************************************
