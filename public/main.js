@@ -16,6 +16,5 @@ function modal(){
         }
     });
 }
-
 //document.querySelector('#unsub').onclick = modal;
 $('#unsub').click(modal);

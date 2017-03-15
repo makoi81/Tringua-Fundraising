@@ -1,7 +1,7 @@
 // var Sequelize = require('sequelize');
 // var sequelize = new Sequelize(databaseURL);
 // var databaseURL = 'sqlite://db';
-
+var moment = require('moment');
 var http = require('http');
 var twilio = require('twilio');
 var express = require('express');
@@ -71,7 +71,7 @@ app.get('/sms', function(req, res){
 	console.log("hi this list rendering ");
 	
 	// res.render('index', {listMessages: listSms});
-	redirect("/");
+	res.redirect("/");
 
 });
 
@@ -79,7 +79,8 @@ app.get('/sms', function(req, res){
 app.post('/sms', function(req, res){
 
 	var phoneNumbers = users.map(user => "+"+user.phoneNumber);
-	var d = new Date();
+	// var d = new Date();
+	   var d=moment().format('LLLL');
 	var newSms = {
 		//'receiver': phoneNumbers.join(","),
 		//'receiver':"+16467658666",

@@ -2,13 +2,9 @@
 * {
     box-sizing: border-box;
 }
-/*html {
-    font-family: "Lucida Sans", sans-serif;
-}*/
 .header {
   font-family: "Lucida Sans", sans-serif;
- /* background-color: #CCBE85;*/
-background: linear-gradient(#CCBE85, beige);
+  background: linear-gradient(#CCBE85, beige);
   color:black;
   margin: auto;
   font-size: 1.75em;
@@ -18,34 +14,20 @@ background: linear-gradient(#CCBE85, beige);
     margin: 20px;
 }
 .goals{ 
- /* display: inline-block;*/
   width:90%;
- /* width:45%;*/
   margin: 1em auto 0;
-  /*font-size: 0.9em;*/
   font-size: 1.em;
-  /*background-color: beige;*/
   background: linear-gradient(#CCBE85, beige);
   padding: 1.5em 0.75em;
- /* height: 321px;*/
 }
 .login-form form{
-  /*font-size: 0.5em;*/
-  /*display: table;
+  display: table;
   margin: 1em auto 0;
-  padding: 1.25em 0.75em;*/
-  /*border: 2px double;*/
- /* background-color: beige;*/
-  /*font-size: 0.5em; */
-    display: table;
-    margin: 1em auto 0;
-    padding: 1.25em 0.75em;
-    /* border: 2px double; */
-    /*background-color: beige;*/
-    background: linear-gradient(#CCBE85, beige);
-    height: 12px;
-    width: 50vw;
-    border: 2px double;
+  padding: 1.25em 0.75em;
+  background: linear-gradient(#CCBE85, beige);
+  height: 12px;
+  width: 50vw;
+  border: 2px double;
 }
 }
 .login-form label {
@@ -70,18 +52,13 @@ background: linear-gradient(#CCBE85, beige);
     padding: 5px;
 }
 body{
-    font-size: 8pt;
-    margin: 10px;    
-    background-color: beige;
-    background-size: 80px 60px;
-    background-image: url("./images/bkgFoto2.jpg");
-    background-repeat: repeat;
+  font-size: 8pt;
+  margin: 10px;    
+  background-color: beige;
+  background-size: 80px 60px;
+  background-image: url("./images/bkgFoto2.jpg");
+  background-repeat: repeat;
 }
-/*.container{
-    background-image: url("./images/bkgFoto2.jpg");
-    background-repeat: repeat;
-}*/
-
 .row{
   width:90%;
   margin: 1em auto 0;
@@ -97,19 +74,17 @@ h1{
   border: 5px solid black;
   border-radius: 10px;
   background: linear-gradient(#CCBE85, beige);  
-
 }
 h2{
-    font-size: 1em;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+  font-size: 1em;
+  text-align: center;
+  margin: 0;
+  padding: 0;
 }
 h3{
   margin:0;
   padding: 0;
   font-size: 0.80em;
-
 }
 .menu ol {
   list-style-type: none;
@@ -125,14 +100,12 @@ h3{
    background-color:#C0C0C0;
 }
 .aside {
-   /* background-color:#CCBE80;*/
-   background: linear-gradient(#CCBE85, beige);
-    padding:1em;
-    margin:1em 0;
-    text-align: center;
-    font-size: 10px;
+  background: linear-gradient(#CCBE85, beige);
+  padding:1em;
+  margin:1em 0;
+  text-align: center;
+  font-size: 10px;
 }
-
 /* For desktop: */
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -148,10 +121,10 @@ h3{
 .col-12 {width: 100%;}
 
 @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    [class*="col-"] {
-        width: 100%;
-    }
+  /* For mobile phones: */
+  [class*="col-"] {
+      width: 100%;
+  }
 }
 .message textarea{
   width: 100%; 
@@ -173,136 +146,56 @@ h3{
 .unsubscribe button{
    width: 100%;
     margin: 1px;
-
 }
-/* style for stripe form*/
-/*.stripeform{
-    background-color: #33b5e5;
-    padding:1em;
-    margin:1em;
-    text-align: center;
-    font-size: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
-
-}
-/*additional style  for login page*/
-
-
-/*.login-form {
-  font-size: 0.5em;
-  display: table;
-  margin: 1em auto 0;
-  padding: 1.25em 0.75em;
-  border: 2px double;
-  background-color: beige;
-}
-.login-form label {
-  display: block;
-  margin-bottom: 0.25em;
-}
-.login-form span {
-  display: inline-block;
-  min-width: 6em;
-}
-.login-form .actions {
-  margin-top: 1em;
-  text-align: center;
-}
-.sign_up{
-  margin-top: 1em;
-  text-align: center;
-}*/
-
-/*******************Style for sign up page********************/
-
 #sign-up-form{
   font-size: 0.5em;
   display: table;
   margin: 1em auto 0;
   padding: 1.25em 0.75em;
   border: 2px double;
-  background-color: beige;
+  background: linear-gradient(#CCBE85, beige);
 
 }
-/*#stripe_login{
-  font-size: 0.5em;
-  display: table;
-  margin: 1em auto 0;
-  padding: 1.25em 0.75em;
-  border: 2px double;
-  background-color: beige;
-
-}*/
-
-
 /* Full-width input fields */
 input[type=text], input[type=password],input[type=amunt],input[type=monthly] {
-    width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 5px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
-
 /* Set a style for all buttons */
 button {
   width: 25%;
   padding: 10px
   color: white;
 }
-
-/* Extra styles for the cancel button */
-/*.cancelbtn {
-    padding: 14px 20px;
-    background-color: #f44336;
-}*/
-
-/* Float cancel and signup buttons and add an equal width */
-/*.cancelbtn,.signupbtn {
-    float: left;
-    width: 50%;
-}*/
-
-/* Add padding to container elements */
-/*.container {
-    padding: 16px;
-}*/
-/**************sign up *****************/
-/*input[type=text]{
-  padding: 5px 10px;
-  margin:5px 0;
-}*/
 .sign_up{
   font-size: 1.0em;
   display: table;
   margin: 1em auto 0;
   padding: 1.25em 0.75em;
-  /*border: 2px double;*/
-  background-color: beige;
+  background: linear-gradient(#CCBE85, beige);
   width: 45vw;
 }
 .stripe_login{
-  /*display: inline-block;*/
   font-size: 1.0em;
- /* display: table;*/
   margin: 1em auto 0;
   padding: 1.25em 0.75em;
   border: 2px double;
-  background-color: beige;
+  background: linear-gradient(#CCBE85, beige);
   width: 45vw;
-  /*width:45%;
-  padding-top: 20px;
-    height: 321px;*/
-
 }
 .StripButton{
   padding: 10px;
   margin: auto;
 }
-
-
-
+.plan{
+  text-align: center;
+  border:5px solid red;
+  border-radius: 3px;
+}
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
     .cancelbtn, .signupbtn {
