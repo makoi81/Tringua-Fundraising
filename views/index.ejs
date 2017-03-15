@@ -2,7 +2,6 @@
 <html>
   <title>Tringua Fundraising</title>
   <head>
-    <script>moment().format();</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- google fonts librairy -->
@@ -86,8 +85,8 @@
 
             <% for(var i = 0; i < listMessages.length; i++){ %>
                <h2>message <%=i+1 %></h2>
-               <h3><%= listMessages[i].dateTime %></h3>
-               <h3><%= listMessages[i].message %></h3>
+               <h3><%= moment(listMessages[i].dateTime).format("MMM Do YYYY")%></h3>
+               <h3><%- listMessages[i].message %></h3>
             <%}%>
             <form  action= "/sms" method="POST" >
               <div class="message">           
