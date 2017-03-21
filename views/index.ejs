@@ -86,8 +86,8 @@
 
             <% for(var i = 0; i < listMessages.length; i++){ %>
                <h2>message <%=i+1 %></h2>
-               <h3><%= listMessages[i].dateTime %></h3>
-               <h3><%= listMessages[i].message %></h3>
+               <h3><span><%= moment(listMessages[i].dateTime).format("MMM Do YYYY")%></h3>
+               <h3><%- listMessages[i].message %></h3>
             <%}%>
             <form  action= "/sms" method="POST" >
               <div class="message">           
