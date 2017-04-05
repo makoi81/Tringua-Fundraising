@@ -1,6 +1,12 @@
-// var Sequelize = require('sequelize');
-// var sequelize = new Sequelize(databaseURL);
-// var databaseURL = 'sqlite://db';
+
+var path = require("path");
+// export TWILIO_ACCOUNT_SID='YOUR_ACCOUNT_SID';
+process.env.TWILIO_ACCOUNT_SID = 'YOUR_ACCOUNT_SID';
+// export TWILIO_AUTH_TOKEN='YOUR_AUTH_TOKEN';
+process.env.TWILIO_AUTH_TOKEN = 'YOUR_AUTH_TOKEN';
+var Sequelize = require('sequelize');
+var databaseURL = 'sqlite://db';
+var sequelize = new Sequelize(databaseURL);
 var moment = require('moment');
 var http = require('http');
 var twilio = require('twilio');
@@ -8,37 +14,129 @@ var express = require('express');
 var app = express();
 var port = 3000;
 var bodyParser = require("body-parser");
-
+var cookieParser = require('cookie-parser');
+//step for login
+// var passport = require('passport');
+var session = require('express-session');
+var passwordHash = require('password-hash');
 var listSms = [];
-var contactList =[];
 
+//************ adding of sequelize*************
+
+var env = process.env.NODE_ENV || "development";
+var config = require(path.join(__dirname,'config', 'config.json'))[env];
+if (process.env.DATABASE_URL) {
+  var sequelize = new Sequelize(process.env.DATABASE_URL,config);
+} else {
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+//************
+
+
+// var contactList =[];
 var users = [
 	{
 		username: "KOITA",
 		phoneNumber: "+16467658666"
-		//14696450110
 	}
 ];
 var twilioNumber = "14696450110";
-
 var loggedInUser = users[0];
+
+var Member = sequelize.define('Member', {
+    phone:Sequelize.STRING,
+    username: {
+	    type: Sequelize.STRING,
+	    allowNull: false,
+	    unique: true
+	},
+    fullName:Sequelize.STRING,
+    pswd:{
+	    type: Sequelize.STRING,
+	    allowNull: false,
+	},
+    pswd_repeat:Sequelize.STRING   
+});
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
+app.use(cookieParser());
+// app.use(passport.initialize());
 
-// set of views engine for handlebars ejs for ejs
+app.use(session({
+  secret: 'password-protected site',
+  resave: false,
+  saveUninitialized: true
+}));
+
+	// set of views engine for handlebars ejs for ejs
 app.set('view engine', 'ejs')
-
-// set the route from login page to  the home page
+	// set the route from login page to  the home page
 app.get('/', function(req, res){
 	console.log("hi this list rendering ");	
-	 res.render('login', {listMessages: listSms});
+	// res.render('login', {listMessages: listSms});
 	//redirect("/");
+	// Member.findAll().then(function(listSms){
+	// });
+	// res.render('index',{moment:moment, listMessages: listSms});
+	res.render('login');
 });
+
+app.get('/Member.json', function(req, res){
+	Member.findAll().then(function(){
+		res.json(Member);
+	});
+});
+
 app.get('/login', function(req, res){  
- res.render('index', {moment:moment, listMessages: listSms});
+  res.render('index', {moment:moment, listMessages: listSms});
+ //res.render('index');
 });
+
+app.post('/login', function(req, res){  
+  let username = req.body.username;
+  let password = rea.body.password;
+   
+    Member.count({where:{username:username}}).then(function (count){
+        if(!count == 0){
+            User.findOne({
+                where: {username:username}
+            }).then(function(member){
+                var pass = passwordHash.verify(req.body.password, member.password);
+                if(pass){
+                    req.session.MemberId = member.id;
+                    req.session.username = member.username;                    
+                    res.redirect('index')
+                }else{
+                    res.render('login');
+                }            
+            });
+        }else{
+            res.send('Wrong Email');
+        }
+    });
+    console.log("login -----"+req.session.MemberId)
+});
+		// logout
+app.get('/logout', function(req, res) {
+  req.session.MemberId = null;
+  // res.redirect("/");
+  res.redirect("login");	
+
+});
+
+
+//*************************login*********************
+
+
+// app.set('port', process.env.PORT || 3000);
+
+
+// app.get("/", function(req, res) {
+//   res.send("Welcome to my private lair!");
+// });
+//************************end login*************
 
 //********************************************
 
@@ -46,33 +144,34 @@ app.get('/login', function(req, res){
 
 app.get('/sign_up', function(req, res){
 	console.log("hi this list rendering ");	
-	  res.render('sign_up');
-	// redirect("/");
+	
+	Member.findAll().then(function(member){
+			res.render('sign_up', {members: member});
+	});
 });
 app.post('/sign_up', function(req, res){  
-	var newContact = {	
-		email:req.body.email,
-		psw:req.body.psw,
-		psw_repeat:req.body.psw_repeat		
+	var newMember = {	
+		phone:req.body.phone,
+		username:req.body.username,
+		fullName:req.body.fullName,
+		pswd:req.body.psw,
+		pswd_repeat:req.body.psw_repeat		
 	}
-	contactList.push(newContact);
-	console.log("hi hi guys"+newcontact);
-	res.redirect("/");
+	sequelize.sync().then(function()
+    {
+    	return Member.create(newMember).then(function(member){
+  		    req.session.MemberId = member.id;
+  		    req.session.username =member.username;
+  	    });
+    });
+     res.redirect('index');
 });
-
-
-
-
-
-
 
 // set the route for the home page
 app.get('/sms', function(req, res){
-	console.log("hi this list rendering ");
-	
-	// res.render('index', {listMessages: listSms});
-	res.redirect("/");
-
+	console.log("hi this list rendering ");	
+	 res.render('index', {listMessages: listSms});
+	// res.redirect("/");
 });
 
 // create   route for  sms
@@ -82,104 +181,54 @@ app.post('/sms', function(req, res){
 	// var d = new Date();
 	   var d=moment().format('LLLL');
 	var newSms = {
-		//'receiver': phoneNumbers.join(","),
-		//'receiver':"+16467658666",
 		'receiver':loggedInUser.phoneNumber,
-
 		// 'sender':loggedInUser.phoneNumber,
 		'sender': twilioNumber ,
 		'message': req.body.message,
 		'dateTime': d
 	}
-
 	listSms.push(newSms);
 	console.log(listSms);
 	console.log('Hi guys this my express app');
-    //var accountSid =node.env.accountSid;
-	var accountSid ='AC52dd23a570e46e5d3799d53bfce4894b'; 
-	var authToken ='8bfb4ca1d81077737fcb6b207e222956'; 
+    
 	// Send the text message.
-	var client = twilio(accountSid, authToken);
+	var client = twilio('YOUR_ACCOUNT_SID', 'YOUR_AUTH_TOKEN');
     // var twiloNumber = 14696450110;
 	//  var from = demo ? twiloNumber : newSms.sender;
 	//  if (demo) {
-
-	// }
-
-	
+	// }	
 	client.sendMessage({
-
 	  to:newSms.receiver,
 	  from: twilioNumber,
-	  body: req.body.message
-	  
-	}, function(err, data){
+	  body: req.body.message	  
+	}, 
+	function(err, data){
 		if(err) {
 			console.log(err);
 			res.status(500).send("Error!");
 		} else {
 			console.log(data);
-
 		}
 	});	
 	res.redirect('/login');
-
 });
+
+//password protect everything else
+app.use(function(req, res, next) {
+  if (req.session.MemberId) {
+    next();
+    return;
+  }else{
+  	res.redirect('/');
+  }
+});
+
 http.createServer(app).listen(port, function () {
-   console.log("Express server listening on port "+ port);
-  
+   console.log("Express server listening on port "+ port);  
 });
-/*************    set up of stripe ********** */
 
 
-// var publicStripeApiKey = '...';
-// var publicStripeApiKeyTesting = '...';
 
-// Stripe.setPublishableKey(publicStripeApiKey);
-
-// app.post('/stripe', function stripeResponseHandler (status, response) {
-// 	if (response.error) {
-// 		$('#error').text(response.error.message);
-// 		$('#error').slideDown(300);
-// 		$('#stripe-form .submit-button').removeAttr("disabled");
-// 		return;
-// 	}
-	  
-// 	var form = $("#payment-form");
-// 	form.append("<input type='hidden' name='stripeToken' value='" + response.id + "'/>");
-
-// 	$.post(
-// 		form.attr('action'),form.serialize(),function(status){
-// 				if (status != 'ok') {
-// 				$('#error').text(status);
-// 				$('#error').slideDown(300);
-// 			}
-// 		  else {
-// 		    $('#error').hide();
-// 		    $('#success').slideDown(300);
-// 		  }
-// 		  $('.submit-button').removeAttr("disabled");
-// 		}
-// 	);
-// }
-
-// // http://stripe.com/docs/tutorials/forms
-// $("#payment-form").submit(function(event) {
-// 	$('#error').hide();
-// 	// disable the submit button to prevent repeated clicks
-// 	$('.submit-button').attr("disabled", "disabled");
-
-// 	var amount = $('#cc-amount').val(); // amount you want to charge in cents
-// 	Stripe.createToken({
-// 	number: $('.card-number').val(),
-// 	cvc: $('.card-cvc').val(),
-// 	exp_month: $('.card-expiry-month').val(),
-// 	exp_year: $('.card-expiry-year').val()
-// 	}, amount, stripeResponseHandler);
-
-// 	// prevent the form from submitting with the default action
-// 	return false;
-// });
 
 
 
