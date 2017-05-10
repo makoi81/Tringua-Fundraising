@@ -1,11 +1,13 @@
-
+var stripe = require('stripe')('process.env.secretStripeKey');
 var path = require("path");
-// export TWILIO_ACCOUNT_SID='YOUR_ACCOUNT_SID';
 process.env.TWILIO_ACCOUNT_SID = 'YOUR_ACCOUNT_SID';
-// export TWILIO_AUTH_TOKEN='YOUR_AUTH_TOKEN';
 process.env.TWILIO_AUTH_TOKEN = 'YOUR_AUTH_TOKEN';
 var Sequelize = require('sequelize');
-var databaseURL = 'sqlite://db';
+
+//var databaseURL = 'sqlite://db';
+var databaseURL = process.env.DATABASE_URL || 'sqlite://db';
+console.log(databaseURL);
+
 var sequelize = new Sequelize(databaseURL);
 var moment = require('moment');
 var http = require('http');
@@ -16,7 +18,6 @@ var port = 3000;
 var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
 //step for login
-// var passport = require('passport');
 var session = require('express-session');
 var passwordHash = require('password-hash');
 var listSms = [];
@@ -32,8 +33,6 @@ if (process.env.DATABASE_URL) {
 }
 //************
 
-
-// var contactList =[];
 var users = [
 	{
 		username: "KOITA",
@@ -62,38 +61,26 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(cookieParser());
-// app.use(passport.initialize());
-
 app.use(session({
   secret: 'password-protected site',
   resave: false,
   saveUninitialized: true
 }));
-
 	// set of views engine for handlebars ejs for ejs
 app.set('view engine', 'ejs')
 	// set the route from login page to  the home page
 app.get('/', function(req, res){
 	console.log("hi this list rendering ");	
-	// res.render('login', {listMessages: listSms});
-	//redirect("/");
-	// Member.findAll().then(function(listSms){
-	// });
-	// res.render('index',{moment:moment, listMessages: listSms});
 	res.render('login');
 });
-
 app.get('/Member.json', function(req, res){
 	Member.findAll().then(function(){
 		res.json(Member);
 	});
 });
-
 app.get('/login', function(req, res){  
   res.render('index', {moment:moment, listMessages: listSms});
- //res.render('index');
 });
-
 app.post('/login', function(req, res){  
   let username = req.body.username;
   let password = rea.body.password;
@@ -118,7 +105,7 @@ app.post('/login', function(req, res){
     });
     console.log("login -----"+req.session.MemberId)
 });
-		// logout
+//------ logout
 app.get('/logout', function(req, res) {
   req.session.MemberId = null;
   // res.redirect("/");
@@ -126,22 +113,7 @@ app.get('/logout', function(req, res) {
 
 });
 
-
-//*************************login*********************
-
-
-// app.set('port', process.env.PORT || 3000);
-
-
-// app.get("/", function(req, res) {
-//   res.send("Welcome to my private lair!");
-// });
-//************************end login*************
-
-//********************************************
-
 // set the route from the home to the sign up page
-
 app.get('/sign_up', function(req, res){
 	console.log("hi this list rendering ");	
 	
@@ -171,12 +143,10 @@ app.post('/sign_up', function(req, res){
 app.get('/sms', function(req, res){
 	console.log("hi this list rendering ");	
 	 res.render('index', {listMessages: listSms});
-	// res.redirect("/");
 });
 
 // create   route for  sms
 app.post('/sms', function(req, res){
-
 	var phoneNumbers = users.map(user => "+"+user.phoneNumber);
 	// var d = new Date();
 	   var d=moment().format('LLLL');
@@ -205,7 +175,7 @@ app.post('/sms', function(req, res){
 	function(err, data){
 		if(err) {
 			console.log(err);
-			res.status(500).send("Error!");
+			// res.status(500).send("Error!");
 		} else {
 			console.log(data);
 		}
@@ -223,6 +193,28 @@ app.use(function(req, res, next) {
   }
 });
 
+//-------------------stripe-------------
+app.get('/paysuccess', function(req, res){
+  console.log("hi this list rendering "); 
+   res.render("paysuccess", { }); 
+});
+
+app.post('/charge', function(req, res){
+  console.log("hi this is the stripe api example "); 
+  var token = req.body.stripeToken;
+  var chargeAmount = req.body.chargeAmountt;
+  var charge = stripe.charges.create({
+    amount: chargeAmount,
+    currency: 'usd',
+    source: token
+  }, function(err, charge){
+      if(err & err.type === "stripeCardError"){
+        console.log(" Your card was declined")
+      }
+    });
+   res.redirect("/paysuccess");   
+});
+//----------------------end stripe---------------
 http.createServer(app).listen(port, function () {
    console.log("Express server listening on port "+ port);  
 });

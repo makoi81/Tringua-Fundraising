@@ -54,9 +54,25 @@
                 <span><button type="submit" >Create plan</button></span>
             </div>          
         </form>
+      </div>
+      <div class="stripe" align="center">
+        <form   action="/charge"  method="post" >  
+          <script 
+          src="https://checkout.stripe.com/checkout.js"
+          class="stripe-button"
+          <!-- data-key ="pk_test_x2likS3Pvzpr2jPk4ZcDqI4h" -->
+          data-key="process.env.publicStripeKey";
+          data-name="tringua payment"
+          data-amount="300.00"
+          data-description="this is a way to pay your contribution"
+          data-locale ="auto"
+          data-currrency ="usd"
+          ></script> 
+          <input type="hidden" name="chargeAmountt" value="300.00">     
+        </form>
       </div>  
       <div class="row">
-        <div   class="col-3 menu"align="center">
+        <div   class="col-3 menu" align="center">
             <h2>Statement</h2>
             <h3>Last Five  Transactions</h3>
             <ol>
