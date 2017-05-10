@@ -14,7 +14,8 @@ var http = require('http');
 var twilio = require('twilio');
 var express = require('express');
 var app = express();
-var port = 3000;
+//var port = 3000;
+var port = process.env.PORT || 3000;
 var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
 //step for login
