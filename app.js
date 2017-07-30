@@ -2,8 +2,8 @@ var stripe = require('stripe')('process.env.secretStripeKey');
 var path = require("path");
 process.env.TWILIO_ACCOUNT_SID = 'YOUR_ACCOUNT_SID';
 process.env.TWILIO_AUTH_TOKEN = 'YOUR_AUTH_TOKEN';
-var Sequelize = require('sequelize');
 
+var Sequelize = require('sequelize');
 //var databaseURL = 'sqlite://db';
 var databaseURL = process.env.DATABASE_URL || 'sqlite://db';
 console.log(databaseURL);
@@ -25,13 +25,13 @@ var listSms = [];
 
 //************ adding of sequelize*************
 
-var env = process.env.NODE_ENV || "development";
-var config = require(path.join(__dirname,'config', 'config.json'))[env];
-if (process.env.DATABASE_URL) {
-  var sequelize = new Sequelize(process.env.DATABASE_URL,config);
-} else {
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+// var env = process.env.NODE_ENV || "development";
+// var config = require(path.join(__dirname,'config', 'config.json'))[env];
+// if (process.env.DATABASE_URL) {
+//   var sequelize = new Sequelize(process.env.DATABASE_URL,config);
+// } else {
+//   var sequelize = new Sequelize(config.database, config.username, config.password, config);
+// }
 //************
 
 var users = [
