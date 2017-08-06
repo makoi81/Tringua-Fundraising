@@ -149,8 +149,9 @@ app.get('/sms', function(req, res){
 // create   route for  sms
 app.post('/sms', function(req, res){
 	var phoneNumbers = users.map(user => "+"+user.phoneNumber);
-	// var d = new Date();
+	  // var d = new Date();
 	   var d=moment().format('LLLL');
+	  // var d =moment("12-25-1995", "MM-DD-YYYY");
 	var newSms = {
 		'receiver':loggedInUser.phoneNumber,
 		// 'sender':loggedInUser.phoneNumber,
